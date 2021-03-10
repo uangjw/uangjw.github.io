@@ -3,7 +3,7 @@ layout: page
 title: Links
 description: -
 keywords: -
-comments: false
+comments: true
 menu: 链接
 permalink: /links/
 ---

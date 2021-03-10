@@ -12,6 +12,4 @@ Jingwen Huang. Learning.
 
 
 
-Email:
-
-huangjw223@mail2.sysu.edu.cn
+Email: huangjw223@mail2.sysu.edu.cn
