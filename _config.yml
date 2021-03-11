@@ -4,10 +4,10 @@
 baseurl:
 url: https://uangjw.github.io
 date_format: "ordinal"
-title: title
-subtitle: "subtitle"
-description: "description"
-keywords: keywords, A, B
+title: Bird Nest
+subtitle: "More than yesterday."
+description: "-"
+keywords: CS, NPR, student, life
 timezone: Asia/Guangzhou
 encoding: "utf-8"
 side_bar_repo_limit: 5
