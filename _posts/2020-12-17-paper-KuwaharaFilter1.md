@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 论文笔记||Image and Video Abstraction by Anisotropic Kuwahara Filtering
-categories: [replication, opencv]
+categories: [PaperNotes]
 description: 论文笔记||Image and Video Abstraction by Anisotropic Kuwahara Filtering
 keywords: paper, KuwaharaFilter
 ---
