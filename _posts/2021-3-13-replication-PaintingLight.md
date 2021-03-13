@@ -6,7 +6,7 @@ description: python-opencv实现数字绘画重打光
 keywords: python, opencv
 ---
 
-​	Project PaintingLight(https://github.com/lllyasviel/PaintingLight) 通过色彩几何（color geometry）的方法实现了对数字绘画进行重打光（relighting）的功能；算法的核心在于定义并测量了图像的笔触密度（stroke density），从而以此为基础生成与给定光源位置对应的打光效果。整个项目可以大致分为定义并测量笔触密度、生成大致光照图像以及生成最终图像三个部分。
+​	Project PaintingLight(<https://github.com/lllyasviel/PaintingLight>) 通过色彩几何（color geometry）的方法实现了对数字绘画进行重打光（relighting）的功能；算法的核心在于定义并测量了图像的笔触密度（stroke density），从而以此为基础生成与给定光源位置对应的打光效果。整个项目可以大致分为定义并测量笔触密度、生成大致光照图像以及生成最终图像三个部分。
 
 1. 定义并测量笔触密度
 
@@ -42,5 +42,5 @@ keywords: python, opencv
 
    其中$\boldsymbol{E}$即已考虑了光源位置的大致光照效果图像，$\boldsymbol{K}$为各像素笔触密度stroke density的值所对应的灰度图像，$\gamma$为光照强度参数。$O$为环境强度参数（ambient intensity），其意义是在具有较小笔触密度值的区域模拟环境光的效果。在实际实现中，作者是先生成不考虑光源而考虑笔触密度的光照图像后再将其与用户鼠标指示的光源位置信息（光源坐标向量）作运算，得到最终的光照图像。渲染结果由光照图像与原图像各像素值对应相乘即得。
 
-   ​	大致运行结果如下。代码见https://github.com/uangjw/Replication-of-PaintingLight <br>
+   ​	大致运行结果如下。代码见<https://github.com/uangjw/Replication-of-PaintingLight> <br>
    <img src="/images/RelightingResult.png"/>
