@@ -1,0 +1,12 @@
+---
+layout: post
+title: 复现||c++/opencv实现简单LIC
+categories: [replication, opencv]
+description: c++/opencv实现简单LIC
+keywords: 复现, LIC, opencv
+---
+
+输出效果如下图所示。代码见https://github.com/uangjw/Replication-of-LIC。
+
+​	最大的体会是先前对论文所介绍方法的理解太过流于表面，虽说基本明白了线积分卷积是在做什么，但从数学公式到代码的实现之间还是需要更多的思考。供参考的源代码基本就是沿着论文的思路编写的，但由于对论文理解不够深，所以我光是花在理解源代码在做什么的时间就已经很多很多了。实际上如果能先把论文进一步梳理一下再动手，效率会更高一些。源代码中似乎有一些基于论文方法的优化，如采样坐标的选取，总之我还是完全基于最基本的方法来实现的。一段时间折腾下来，感觉自己还是太缺乏知识和经验了，尤其是在如何编写程序来实现数学方法这一方面。<br>
+![LIC](uangjw.github.io\images\posts\LIC.png)
