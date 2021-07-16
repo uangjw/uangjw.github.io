@@ -8,7 +8,7 @@ menu: 关于
 permalink: /about/
 ---
 
-...
+累bro
 
 
 
