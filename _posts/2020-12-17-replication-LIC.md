@@ -2,7 +2,7 @@
 layout: post
 title: 复现||c++/opencv实现简单LIC
 categories: [replication, opencv]
-description: c++/opencv实现简单LIC
+description: 如题
 keywords: 复现, LIC, opencv
 ---
 
