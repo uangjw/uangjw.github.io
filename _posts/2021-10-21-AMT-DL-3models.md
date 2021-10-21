@@ -27,7 +27,7 @@ High-resolution Piano Transcription with Pedals by Regressing Onset and Offset T
 
 ### 声学模型
 
-声学模型输入特征$x$，输出$P(y|x)$，其中$y$是一个高维向量，其分量分别对应于$x$在钢琴键的各音高上的可能性。经过一番讨论，最终文章选用的声学模型是一个卷积神经网络。选择CNN的原因主要是它在为输入音频的一个帧做出音高预测时，能够同时提取与这一帧相邻的多个帧的时域与频域特征，这与音乐的特性是相适应的。
+声学模型输入特征$x$，输出$P(y$&#124;$x)$，其中$y$是一个高维向量，其分量分别对应于$x$在钢琴键的各音高上的可能性。经过一番讨论，最终文章选用的声学模型是一个卷积神经网络。选择CNN的原因主要是它在为输入音频的一个帧做出音高预测时，能够同时提取与这一帧相邻的多个帧的时域与频域特征，这与音乐的特性是相适应的。
 
 ### 音乐语言模型
 
@@ -39,15 +39,15 @@ High-resolution Piano Transcription with Pedals by Regressing Onset and Offset T
 
 将声学模型和音乐语言模型用概率图模型组合起来，就得到本文真正要提出的Hybrid RNN模型。在独立性假设
 
-$P(y_t|y^{t-1}_0, x^{t-1}_0)=P(y_t|y_0^{t-1})$
+$P(y_t$&#124;$y^{t-1}_0, x^{t-1}_0)=P(y_t$&#124;$y_0^{t-1})$
 
-$P(x_t|y_0^t,x_0^{t-1})=P(x_t|y_t)$
+$P(x_t$&#124;$y_0^t,x_0^{t-1})=P(x_t$&#124;$y_t)$
 
 下可以得到
 
-$P(y|x)\propto P(y_0|x_0)\prod^T_{t=1}P(y_t|y_0^{t-1})P(y_t|x_t)$
+$P(y$&#124;$x)\propto P(y_0$&#124;$x_0)\prod^T_{t=1}P(y_t$&#124;$y_0^{t-1})P(y_t$&#124;$x_t)$
 
-其中$P(y_t|x_t)$即输入$x_t$时对输出的预测，通过声学模型得到；$P(y_t|y_0^{t-1})$即序列中考虑前后全部序列信息后对输出的预测，通过音乐语言模型得到。
+其中$P(y_t$&#124;$x_t)$即输入$x_t$时对输出的预测，通过声学模型得到；$P(y_t$&#124;$y_0^{t-1})$即序列中考虑前后全部序列信息后对输出的预测，通过音乐语言模型得到。
 
 ### Conclusions and Future Work
 
@@ -66,7 +66,7 @@ $P(y|x)\propto P(y_0|x_0)\prod^T_{t=1}P(y_t|y_0^{t-1})P(y_t|x_t)$
 
 ### 网络框架
 
-<img src="images/google_AMT_model.png" style="zoom:67%;" />
+<img src="/images/google_AMT_model.png" style="zoom:67%;" />
 
 还看不太懂，待补充……
 
