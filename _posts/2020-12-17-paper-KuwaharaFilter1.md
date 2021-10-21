@@ -2,7 +2,7 @@
 layout: post
 title: 论文笔记||Image and Video Abstraction by Anisotropic Kuwahara Filtering
 categories: [PaperNotes]
-description: 论文笔记||Image and Video Abstraction by Anisotropic Kuwahara Filtering
+description: 一种各向异的Kuwahara滤波器
 keywords: paper, KuwaharaFilter
 ---
 
