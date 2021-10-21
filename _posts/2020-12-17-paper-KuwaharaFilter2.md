@@ -2,7 +2,7 @@
 layout: post
 title: 论文笔记||Artistic Edge and Corner Enhancing Smoothing
 categories: [PaperNotes]
-description: Artistic Edge and Corner Enhancing Smoothing
+description: 一种简单的非线性的边缘保持的局部图像平滑算子
 keywords: PaperNotes, KuwaharaFilter
 ---
 
