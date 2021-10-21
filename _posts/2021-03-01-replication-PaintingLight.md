@@ -2,7 +2,7 @@
 layout: post
 title: 论文笔记/复现||python-opencv实现数字绘画重打光（relighting）
 categories: [replication, PaperNotes, opencv]
-description: python-opencv实现数字绘画重打光
+description: 如题
 keywords: python, opencv
 ---
 
