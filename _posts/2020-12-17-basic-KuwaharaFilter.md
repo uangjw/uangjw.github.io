@@ -2,7 +2,7 @@
 layout: post
 title: 了解Kuwahara Filter
 categories: [Basics]
-description: 了解Kuwahara Filter
+description: 如题
 keywords: KuwaharaFilter, Basics
 ---
 
