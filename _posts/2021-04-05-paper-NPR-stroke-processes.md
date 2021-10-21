@@ -2,7 +2,7 @@
 layout: post
 title: 论文笔记||Customizing Painterly Rendering Styles Using Stroke Processes
 categories: [PaperNotes]
-description: some word here
+description: 基于笔触方法对照片进行油画风格渲染
 keywords: stochastic reaction-diffusion process
 ---
 
