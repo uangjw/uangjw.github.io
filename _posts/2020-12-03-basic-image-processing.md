@@ -2,7 +2,7 @@
 layout: post
 title: "图像处理基础 1"
 categories: [Basics]
-description: 图像处理基础 1
+description: 图像的表示、色彩空间、空间域卷积滤波与频域卷积滤波
 keywords: image processing
 
 ---
