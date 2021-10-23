@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 不基于模型的预测与控制
-categories: [Reinforce Learning, Basics]
+categories: [Reinforcement Learning, Basics]
 description: 强化学习课堂知识整理
 keywords: Reinforce Learning, MDP
 
