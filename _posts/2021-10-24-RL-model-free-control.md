@@ -131,3 +131,4 @@ $Q(S_t,A_t)\leftarrow Q(S_t, A_t)+\alpha(R_{t+1}+\gamma Q(S_{t+1}, A')-Q(S_t, A_
 
 <img src="/images/Q_learning.png" style="zoom:67%;" />
 
+上面的伪代码展示的是一种，将完全greedy地改进policy（下一状态选择最大Q对应的a作为行动）作为target policy的Q-learning
