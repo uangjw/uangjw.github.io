@@ -115,7 +115,7 @@ SARSA是on-policy的：个体已有一个策略，并且遵循这个策略进行
 
 <img src="/images/SARSA.png" style="zoom:67%;" />
 
-在算法中，$Q(s,a)$是以一张大表存储的，这不适用于解决规模很大的问题
+在算法中，$Q(s,a)$是以一张大表存储的，这不适用于解决规模很大的问题。
 
 #### Q-learning: Off-policy TD Control
 
