@@ -64,8 +64,6 @@ $S=(255-G)\times \sum_{i\in D}T_i$
 
 为了解决按方向划分的区域之间不能很好衔接的问题，作者直接将每个笔触延长2W个像素，这样使得结果中细节丢失很严重。作者想通过乘上一个edge map来解决这个问题，但这样并不能弥补高光之类的具有大灰度值的细节丢失。
 
-![image-20211110210919830](sktech-generation.assets/image-20211110210919830.png)
-
 <img src="/images/image-20211110210919830.png" div align=center/>
 
 我将延长笔触的部分改为：
@@ -80,13 +78,13 @@ end += int(extend_len)
 
 改进并不明显……（未加edge图）
 
-<img src="images/image-20211111003227879.png" alt="image-20211111003227879" style="zoom: 33%;" />
+<img src="/images/image-20211111003227879.png" alt="image-20211111003227879" style="zoom: 33%;" />
 
-<img src="images/image-20211111004120087.png" alt="image-20211111004120087" style="zoom: 33%;" />
+<img src="/images/image-20211111004120087.png" alt="image-20211111004120087" style="zoom: 33%;" />
 
 眼睛的细节看起来保持得稍好一些，主要是像眼白这样小块的浅色区域，没有因为笔触的过分延长而变得太深
 
-<img src="images/image-20211111004358482.png" alt="image-20211111004358482" style="zoom: 25%;" />   <img src="images/image-20211111004429733.png" alt="image-20211111004429733" style="zoom: 25%;" />
+<img src="/images/image-20211111004358482.png" alt="image-20211111004358482" style="zoom: 25%;" />   <img src="/images/image-20211111004429733.png" alt="image-20211111004429733" style="zoom: 25%;" />
 
 对于非真实感渲染的效果改进往往是建立在非常主观的感受之上的。
 
