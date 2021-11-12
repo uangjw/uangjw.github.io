@@ -78,13 +78,11 @@ end += int(extend_len)
 
 改进并不明显……（未加edge图）
 
-<img src="/images/image-20211111003227879.png" alt="image-20211111003227879" style="zoom: 33%;" />
-
-<img src="/images/image-20211111004120087.png" alt="image-20211111004120087" style="zoom: 33%;" />
+<img src="/images/image-20211111003227879.png" alt="image-20211111003227879" style="zoom: 33%;" />  <img src="/images/image-20211111004120087.png" alt="image-20211111004120087" style="zoom: 33%;" />
 
 眼睛的细节看起来保持得稍好一些，主要是像眼白这样小块的浅色区域，没有因为笔触的过分延长而变得太深
 
-<img src="/images/image-20211111004358482.png" alt="image-20211111004358482" style="zoom: 25%;" />   <img src="/images/image-20211111004429733.png" alt="image-20211111004429733" style="zoom: 25%;" />
+<img src="/images/image-20211111004358482.png" alt="image-20211111004358482" style="zoom: 25%;" />     <img src="/images/image-20211111004429733.png" alt="image-20211111004429733" style="zoom: 25%;" />
 
 对于非真实感渲染的效果改进往往是建立在非常主观的感受之上的。
 
