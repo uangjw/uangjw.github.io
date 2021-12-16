@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 论文笔记/复现||python-opencv实现数字绘画重打光（relighting）
-categories: [replication, PaperNotes, opencv]
+categories: [reproduction, PaperNotes, opencv]
 description: 如题
 keywords: python, opencv
 ---
@@ -42,5 +42,5 @@ keywords: python, opencv
 
    其中$\boldsymbol{E}$即已考虑了光源位置的大致光照效果图像，$\boldsymbol{K}$为各像素笔触密度stroke density的值所对应的灰度图像，$\gamma$为光照强度参数。$O$为环境强度参数（ambient intensity），其意义是在具有较小笔触密度值的区域模拟环境光的效果。在实际实现中，作者是先生成不考虑光源而考虑笔触密度的光照图像后再将其与用户鼠标指示的光源位置信息（光源坐标向量）作运算，得到最终的光照图像。渲染结果由光照图像与原图像各像素值对应相乘即得。
 
-   ​	大致运行结果如下。代码见<https://github.com/uangjw/Replication-of-PaintingLight> <br>
+   ​	大致运行结果如下。代码见<https://github.com/uangjw/Reproduction-of-PaintingLight> <br>
    <img src="/images/RelightingResult.png"/>
