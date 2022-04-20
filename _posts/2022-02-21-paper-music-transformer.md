@@ -28,7 +28,7 @@ Music Transformer中的注意力机制能够关注到一个序列中两个位置
 
 #### self-attention in Transformer
 
-在此先简要总结Transformer中的自注意力机制scaled dot-product attention（之前的报告里理解不够透彻）。
+在此先简要总结Transformer中的自注意力机制scaled dot-product attention。
 
 注意力层的输入是$L$个$D$维的向量的集合$X=(x_1,x_2,...,x_L)$。$Q$是查询张量，通过$X$与$D\times D$的权值矩阵$W^Q$相乘得到；键值向量$K$与$V$同理，$KQV$的形状都是$L\times D$。多头注意力机制就是划分前述$KQV$为$H$个$L\times D_h$的张量，$h$为注意力头的索引，维数$D_h=\frac{D}{H}$。“多头”的设计让模型能够关注一个历史token的不同部分。最后注意力打分的计算公式为：
 $$
