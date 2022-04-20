@@ -185,11 +185,11 @@
     } ,
   
     {
-      "title"    : "",
-      "category" : "",
+      "title"    : "论文笔记||Attention Is All You Need",
+      "category" : "PaperNotes",
       
-      "url"      : "https://uangjw.github.io/2022/04/20/2022-02-27-temp/",
-      "keywords" : ""
+      "url"      : "https://uangjw.github.io/2022/02/27/temp/",
+      "keywords" : "Transformer"
     } ,
   
     {
