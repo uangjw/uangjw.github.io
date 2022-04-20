@@ -1,50 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="https://uangjw.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://uangjw.github.io/" rel="alternate" type="text/html" /><updated>2022-04-20T12:56:04+00:00</updated><id>https://uangjw.github.io/feed.xml</id><title type="html">Bird Nest</title><subtitle>-</subtitle><author><name>Jingwen Huang</name></author><entry><title type="html"></title><link href="https://uangjw.github.io/2022/04/20/2022-02-21-paper-music-transformer/" rel="alternate" type="text/html" title="" /><published>2022-04-20T12:56:04+00:00</published><updated>2022-04-20T12:56:04+00:00</updated><id>https://uangjw.github.io/2022/04/20/2022-02-21-paper-music-transformer</id><content type="html" xml:base="https://uangjw.github.io/2022/04/20/2022-02-21-paper-music-transformer/">&lt;h3 id=&quot;music-transformer&quot;&gt;Music Transformer&lt;/h3&gt;
-
-&lt;p&gt;Music Transformer是一个基于Transformer的音乐生成模型。面对自动音乐生成的问题，Music Transformer在原模型的基础上改进了其所使用的注意力机制；Transformer完全使用注意力层以及全连接层的模型结构可能忽略信号的相对关系特征，Music Transformer在Transformer的基础上使用relative attention，这种注意力机制显式地根据两个标记之间的距离估计注意力分数，从而能够关注在音乐序列中具有更明显作用的相对关系特征。&lt;/p&gt;
-
-&lt;h4 id=&quot;relative-positional-self-attention&quot;&gt;relative positional self-attention&lt;/h4&gt;
-
-&lt;p&gt;文章Self-Attention with Relative Position Representations首先改进Transformer的注意力机制为relative self-attention。该文指出，Transformer与RNN、CNN不同，不对输入序列的相对或绝对位置信息显式地建模，因此只能把绝对位置的表示也作为输入（即位置编码）来让模型考虑。relative self-attention机制能够有效地考虑相对位置的表示，或者说序列元素之间的距离，从而在进行注意力打分时能够高效地提取出序列基于标记间相对位置的特征。Music Transformer所使用的relative self-attention算法是前述文章的算法的改进版，主要减少了空间复杂度。&lt;/p&gt;
-
-&lt;p&gt;Transformer的文章中3.5节就描述了其中使用的位置编码（positional encoding）。在编码器和解码器的输入前，需要给输入的词嵌入向量加上位置编码，从而使得模型能够在学习中利用序列的顺序信息。具体来说，文章提出的模型使用了如下两个函数来保证模型能够轻松地从相对位置信息中学习：
-\(PE_{(pos, 2i)}=sin(pos/10000^{2i/d_{model}}) \\
-PE_{(pos, 2i+1)}=cos(pos/10000^{2i/d_{model}})\)
-其中$pos$是token的位置索引，$i$是维度。也就是说，位置编码的每一个维度都是个正弦信号。需要注意到的是，针对任意的偏移常量$k$，都可以用$PE_{pos}$的线性函数表达出$PE_{pos+k}$。&lt;/p&gt;
-
-&lt;p&gt;Music Transformer中的注意力机制能够关注到一个序列中两个位置之间相距有多远。注意力层所学习的嵌入$E^r$具有形状$(H,L,D_h)$，其中$H$为多头注意力机制的“头数”，$L$为序列长度，$D_h$为维度。$E^r$中包含的嵌入是，对任意一对位置$i_q,j_k$的相对距离$r=j_k-i_q$，从$i_q$的一个查询向量到$j_k$的一个键向量的嵌入。这些嵌入根据相对距离大小，从$-L+1$排列到0，并且分散地被每一个注意力头所学习。&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;深度学习中embedding“嵌入”到底指什么？NLP中模型的输入是word embedding词嵌入。词嵌入是一种词的类型表示，具有相似意义的词具有相似的表示，是将词汇映射到实数向量的方法总称。词嵌入技术的根本目的是为了方便机器计算。一种非常重要的词嵌入技术是Word2Vec，它是一种用于有效学习从文本语料库嵌入的独立词语的统计方法；核心思想是基于上下文，先用向量代表各个词，然后通过一个预测目标函数学习这些向量的参数。在此技术之后，“似乎一切东西都可以被embedding”。总体来说，embedding一词现在已经指代着这样的技术：构建一个映射将一个空间里的实体抛射到一个线性向量空间里去，这样一来可以在向量空间里计算度量它们的距离，亦或者从这个空间寻找到另一个目标空间的映射关系。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h4 id=&quot;self-attention-in-transformer&quot;&gt;self-attention in Transformer&lt;/h4&gt;
-
-&lt;p&gt;在此先简要总结Transformer中的自注意力机制scaled dot-product attention。&lt;/p&gt;
-
-&lt;p&gt;注意力层的输入是$L$个$D$维的向量的集合$X=(x_1,x_2,…,x_L)$。$Q$是查询张量，通过$X$与$D\times D$的权值矩阵$W^Q$相乘得到；键值向量$K$与$V$同理，$KQV$的形状都是$L\times D$。多头注意力机制就是划分前述$KQV$为$H$个$L\times D_h$的张量，$h$为注意力头的索引，维数$D_h=\frac{D}{H}$。“多头”的设计让模型能够关注一个历史token的不同部分。最后注意力打分的计算公式为：
-\(Z^h=Attention(Q^h,K^h,V^h)=Softmax(\frac{Q^hK^{h\top}}{\sqrt{D_h}})V^h\)&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;images/transformer4.png&quot; div=&quot;&quot; align=&quot;center&quot; /&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;relative-positional-self-attention-1&quot;&gt;relative positional self-attention&lt;/h4&gt;
-
-&lt;p&gt;文章Self-Attention with Relative Position Representations的注意力机制能够关注到一个序列中两个位置之间相距有多远。注意力层所学习的嵌入$E^r$具有形状$(H,L,D_h)$，其中$H$为多头注意力机制的“头数”，$L$为序列长度，$D_h$为维度。$E^r$中包含的嵌入是，对任意一对位置$i_q,j_k$的相对距离$r=j_k-i_q$，从$i_q$的一个查询向量到$j_k$的一个键向量的嵌入$e_{ij}$。&lt;/p&gt;
-
-&lt;p&gt;要理解$e_{ij}$怎么来的，还是需要参考文章Self-Attention with Relative Position Representations的描述。首先这种注意力机制将输入序列建模成一个有向全连接图，两个序列元素间的边用键值向量$a^K_{ij}$与$a^V_{ij}$表示。$a^K_{ij}$用于计算scaled dot-product，即$x_i$到$x_j$的权重系数$e_{ij}$：
-\(e_{ij}=\frac{Q(K+a^K_{ij})\top}{\sqrt{D_h}}\)
-这些嵌入根据相对距离大小，从$-L+1$排列到0，并且分散地被每一个注意力头所学习。$E^r$与查询向量经过一点计算，最后就得到一个$L\times L$的对数矩阵$S^{rel}$。这样，每个“头”的注意力分数就通过下式计算得到（公式中省去了注意力头的索引$h$）：
-\(RelativeAttention = Softmax(\frac{QK^{\top}+S^{rel}}{\sqrt{D_h}})V\)
-Music Transformer使用了相同的方法来在注意力打分过程中引入相对位置信息的影响。Music Transformer优化了$S^{rel}$的计算方法，从而降低了这种注意力机制的空间复杂度。&lt;/p&gt;
-
-&lt;p&gt;RPR self-attention的原文章中，从$E^r$每一个注意力头的分量到对应的$S^{rel}$的计算过程包括计算一个$(L,L,D_h)$形状的中间张量$R$，$R$包括了与所有键值之间的相对距离相关联的嵌入（也就是前面的$a^K_{ij}$）。$S^{rel}$的计算是将$L\times D_h$的$Q$拉成$(L,1,D_h)$后与$R$相乘得来的，即$S^{rel}=QR^{\top}$。$R$的存在将算法的空间复杂度拉到了$O(L^2D)$，从而限制了它在长序列中的应用。&lt;/p&gt;
-
-&lt;p&gt;Music Transformer中的RPR self-attention做出了这样的改进：&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;images/musictransformer.png&quot; div=&quot;&quot; align=&quot;center&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;也即，把从$E^r$得到$S^{rel}$的计算过程中对$R$的需求转化成了四个操作，这四个操作的具体效果图片已经展示得很清晰了。&lt;/p&gt;</content><author><name>Jingwen Huang</name></author></entry><entry><title type="html">论文笔记||Attention Is All You Need</title><link href="https://uangjw.github.io/2022/02/07/paper-transformer/" rel="alternate" type="text/html" title="论文笔记||Attention Is All You Need" /><published>2022-02-07T00:00:00+00:00</published><updated>2022-02-07T00:00:00+00:00</updated><id>https://uangjw.github.io/2022/02/07/paper-transformer</id><content type="html" xml:base="https://uangjw.github.io/2022/02/07/paper-transformer/">&lt;h3 id=&quot;transformer&quot;&gt;Transformer&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="https://uangjw.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://uangjw.github.io/" rel="alternate" type="text/html" /><updated>2022-04-20T13:14:47+00:00</updated><id>https://uangjw.github.io/feed.xml</id><title type="html">Bird Nest</title><subtitle>-</subtitle><author><name>Jingwen Huang</name></author><entry><title type="html">论文笔记||Attention Is All You Need</title><link href="https://uangjw.github.io/2022/02/07/paper-transformer/" rel="alternate" type="text/html" title="论文笔记||Attention Is All You Need" /><published>2022-02-07T00:00:00+00:00</published><updated>2022-02-07T00:00:00+00:00</updated><id>https://uangjw.github.io/2022/02/07/paper-transformer</id><content type="html" xml:base="https://uangjw.github.io/2022/02/07/paper-transformer/">&lt;h3 id=&quot;transformer&quot;&gt;Transformer&lt;/h3&gt;
 
 &lt;p&gt;Music Transformer的模型建立在Transformer模型的基础之上。&lt;/p&gt;
 
@@ -620,4 +574,103 @@ where \ head_i=Attention(QW_i^Q,KW_I^K,VW_i^V)\)
       &lt;li&gt;Kuwahara filter容易生成块状的不自然效果（block artifacts），这一现象在纹理丰富的区域尤为明显。其出现是因为窗口的区域划分是方形的，所以一种解决方式是取非矩形（如圆形）的窗口，另一种方法则是根据输入图像来生成特定的窗口。&lt;/li&gt;
     &lt;/ol&gt;
   &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Jingwen Huang</name></author><category term="Basics" /><summary type="html">​ Kuwahara filter是一种非线性的平滑滤波器。其主要特点是能够在保持边缘的前提下对图像进行平滑处理。</summary></entry></feed>
+&lt;/ul&gt;</content><author><name>Jingwen Huang</name></author><category term="Basics" /><summary type="html">​ Kuwahara filter是一种非线性的平滑滤波器。其主要特点是能够在保持边缘的前提下对图像进行平滑处理。</summary></entry><entry><title type="html">论文笔记||Image and Video Abstraction by Anisotropic Kuwahara Filtering</title><link href="https://uangjw.github.io/2020/12/17/paper-KuwaharaFilter1/" rel="alternate" type="text/html" title="论文笔记||Image and Video Abstraction by Anisotropic Kuwahara Filtering" /><published>2020-12-17T00:00:00+00:00</published><updated>2020-12-17T00:00:00+00:00</updated><id>https://uangjw.github.io/2020/12/17/paper-KuwaharaFilter1</id><content type="html" xml:base="https://uangjw.github.io/2020/12/17/paper-KuwaharaFilter1/">&lt;p&gt;​	本文提出了一种各向异的Kuwahara滤波器（anisotropic Kuwahara filter），其能够在保持边缘的同时沿局部特征方向来平滑图像，从而生成接近绘画效果的图像。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;此前的一些经典的保持边缘的图像平滑滤波方法如均值漂移以及双边滤波等，都或多或少存在着一定的缺陷，如在具有高对比度的图像区域，这些滤波方法可能无法产生明显的平滑效果或者平滑过度使得细节丢失严重等等。基础的Kuwahara滤波器相比于前面所提的几个滤波器，在处理高对比度区域以及低对比度区域图像时有一定的优势，但依然具有对噪声不稳定以及会产生块状不自然效果的问题。论文2提出了一种解决此问题的方法，即并不直接取具有最小标准差的子区域来确定中心像素的值，而是根据所有子区域的标准差分配权重，将各子区域的算术平均值的加权和作为结果。显然图像更均匀的子区域所被分配得到的权重将更大。为进一步改进，论文2将滤波器的形状取为了一个圆盘，并按扇形划分子区域。改进后的输出结果大大减少了块状不自然现象的产生，但还是可以观察到一些色彩聚集的不自然，且此种方法产生的绘画效果并没有将原输入图像的方向特征（directional features）考虑进来。本文提出的方法最大的特点是在论文2的基础之上，区别于各向同的（isotropic）滤波方法，其能够根据输入图像的局部特征来调整滤波核的形状与取向（orientation），从而大大减少生成图像中的不自然现象。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;流程可以分为三步。第一步，计算出输入图像的结构张量并对其进行高斯滤波处理。第二步，从平滑后的结构张量计算得到其特征值以及特征向量，并以此为基础对图像局部的取向与各向异程度进行计算。第三步，使用非线性的滤波器来进行基于输入图像结构的平滑滤波处理。该滤波器使用定义在椭圆上的权重函数，对应着更小标准差的局部平均值具有更大的权重。&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;取向以及各向异性（anistropy）的估计&lt;/p&gt;
+
+        &lt;p&gt;​    输入图像的局部取向和各向异程度估计是基于结构张量的特征值以及特征向量进行的。本文直接根据输入图像$f$的RGB值计算出了结构张量：&lt;/p&gt;
+
+        &lt;p&gt;​	\((g_{ij})=\begin{pmatrix}f_x\cdot f_x &amp;amp; f_x\cdot f_y \\f_x \cdot f_y &amp;amp; f_y\cdot f_y\end{pmatrix}=:\begin{pmatrix}E &amp;amp; F \\F &amp;amp; G\end{pmatrix}\)&lt;/p&gt;
+
+        &lt;p&gt;其中$f_x$与$f_y$为$f$在x方向以及y方向的偏导，可以通过分别与标准差为$\sigma$的高斯函数的x偏导与y偏导做卷积运算得到。结构张量矩阵$(g_{ij})$的特征值分别对应着变化率平方的最小值与最大值，对应的特征向量则分别指示这两者的方向。将对应最小变化率的特征向量选择出来，可以得到一个向量场（取具有最小变化率的是因为变化率小的区域正是对应着需要被平滑处理的非边缘部分）。未经处理之前此向量场是不具有连续性的，要想得到能够更清晰地反映图像特征的向量场，需要对结构张量先进行平滑处理。本文使用标准差$\sigma=2.0$的高斯滤波器对结构张量进行了线性的平滑处理（对应着具有较大梯度值的边缘将被分配到更大的权值），体现在特征向量上的效果则是高度非线性的，并且对应了几何上的主成分分析。这样处理过后，边缘取向的信息也被分布到了边缘的邻域之中，从而能够在后续的处理中形成影响。&lt;/p&gt;
+
+        &lt;p&gt;​	下面是本文估计局部各向异程度的方法。首先基于已经计算得到的结构张量，可以得到其特征值为&lt;/p&gt;
+
+        &lt;p&gt;​	\(\lambda_{1,2}=\frac{E+G\pm \sqrt{(E-G)^2+4F^2}}{2}\)&lt;/p&gt;
+
+        &lt;p&gt;与最小变化率同一方向的特征向量为&lt;/p&gt;
+
+        &lt;p&gt;​	\(t=\begin{pmatrix}\lambda_1-E \\-F\end{pmatrix}\)&lt;/p&gt;
+
+        &lt;p&gt;​	于是可以定义局部取向（local orientation）为$\varphi=\arg t$。各向异程度$A$则可以用下式衡量：&lt;/p&gt;
+
+        &lt;p&gt;​	\(A=\frac{\lambda_1-\lambda_2}{\lambda_1+\lambda_2}\)&lt;/p&gt;
+
+        &lt;p&gt;$A$的范围从0到1，当其取0时意味着该局部是各向同的（isotropic，梯度没有一个偏好（preferred）的方向），而取1时意味着该区域是完全各向异的，梯度全部具有同一取向。&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;blockquote&gt;
+      &lt;p&gt;结构张量structure tensor：&lt;/p&gt;
+
+      &lt;p&gt;​	根据结构张量能区分图像的平坦区域、边缘区域和角点区域。给定一张图片$I$，取一任意像素记作$I(p)$，$p$为一个确定的坐标。$I_x$与$I_y$分别是图像在$x$和$y$方向的梯度。给定邻域窗口的半径$m$以及取求和指数坐标$r$，$r$的取值范围为${-m,..+m}\times{-m,..+m}$。给定权值矩阵$w$，该权值矩阵的和窗口的尺寸一样，且所有权值元素的和为1。于是每一个像素位置的结构张量就是一个$2\times 2$的矩阵如下所示：&lt;/p&gt;
+
+      &lt;p&gt;​	\(S_w(p)=\begin{bmatrix} &amp;amp;\sum_r w(r)[I_x(p-r)]^2 &amp;amp; \sum_r w(r)[I_x(p-r)][I_y(p-r)] \\ &amp;amp; \sum_r w(r)[I_x(p-r)][I_y(p-r)] &amp;amp; \sum_r w(r)[I_y(p-r)]^2\end{bmatrix}\)&lt;/p&gt;
+
+      &lt;p&gt;取窗口的半径$m$为0，那么可以得到对图像中的每一个坐标为$p$的像素，其结构张量矩阵为：&lt;/p&gt;
+
+      &lt;p&gt;​	\(S(p)=\begin{bmatrix} &amp;amp;I_x(p)^2 &amp;amp; I_x(p)I_y(p) \\ &amp;amp; I_x(p)I_y(p) &amp;amp; I_y(p)^2\end{bmatrix}\)&lt;/p&gt;
+
+      &lt;p&gt;将该矩阵进行奇异值分解，可以得到两个特征值$\lambda_1$与$\lambda_2$，对应地有特征向量$\vec{e_1}$以及$\vec{e_2}$。若$\lambda_1&amp;gt;\lambda_2$，那么$\vec{e_1}$或$-\vec{e_1}$的方向就是与窗口内梯度最大对齐的方向。实际上$\lambda_1$的取值就是窗口内沿前述方向的梯度的加权和，代表了主方向的强弱程度。同理，$\lambda_2$的取值代表了窗口内次方向的强弱程度。因此，$\lambda_1$与$\lambda_2$的相对差异可以用来衡量窗口中梯度的各向异程度。这里所谓各向异程度（anisotropy）指的是窗口中的梯度在多大程度上偏向某一个特定方向。这一属性可以通过一致性（coherence）来量化衡量。一致性的定义如下：&lt;/p&gt;
+
+      &lt;p&gt;​	\(c_w=\begin{pmatrix}\frac{\lambda_1-\lambda_2}{\lambda_1+\lambda_2}\end{pmatrix}^2\)&lt;/p&gt;
+    &lt;/blockquote&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;各向异的Kuwahara滤波：&lt;/p&gt;
+
+        &lt;p&gt;​	定义二维到三维的映射$f$为输入图像，二维向量$x_0$为一个点；$\varPhi$为局部取向，$A$为$x_0$处的各向异程度。为使$x_0$处的椭圆形滤波器的离心率（形状）受$A$控制，设&lt;/p&gt;
+
+        &lt;p&gt;​	\(S=\begin{pmatrix}\frac{\alpha}{\alpha+A} &amp;amp; 0 \\0 &amp;amp; \frac{\alpha}{\alpha+A}\end{pmatrix}\)&lt;/p&gt;
+
+        &lt;p&gt;其中$\alpha&amp;gt;0$为一个调优参数（tuning parameter）。明显当$\alpha\to\infty$时矩阵$S$趋向于单位矩阵。本文在所有例子中取$\alpha$为1，对应的最大离心率为4。设$R_{\varphi}$为$\varphi$定义的旋转矩阵且设$h=\lceil 2\sigma_r\rceil$。于是该椭圆就可由下面的式子定义：&lt;/p&gt;
+
+        &lt;p&gt;​	\(\Omega=\{x\in R^2:\Vert SR_{-\varphi}x\Vert\leq h\}\)&lt;/p&gt;
+
+        &lt;p&gt;这样定义的椭圆窗口的主轴与局部取向对齐（$\varphi$），且其在各向异程度高的区域具有较大离心率，各向异程度低的区域具有较小离心率（趋向圆形）。&lt;/p&gt;
+
+        &lt;p&gt;​	$SR_{\varphi}$定义了一个将椭圆$\Omega$映射到以$h$为半径的圆盘上的线性坐标变换。为了确定椭圆窗口上的滤波权重函数（weighting function），本文通过定义特征函数（characteristic function）来将映射得到的圆盘划分为N个扇区。第i个扇区的定义如下：&lt;/p&gt;
+
+        &lt;p&gt;​	\(\chi _i(x)=\begin{cases}1 \ \ \frac{(2i-1)\pi}{N}&amp;lt;\arg x\leq \frac{(2i+1)\pi}{N}, \ i=0,\dots ,N-1 \\0 \ \ \rm{otherwise}\end{cases}\)&lt;/p&gt;
+
+        &lt;p&gt;也即，在扇区i内的点取值为1，在扇区i外的点取值为0。通过特征函数$\chi _i$可定义出扇区上的权值函数：&lt;/p&gt;
+
+        &lt;p&gt;​	\(K_i=(\chi_i\star G_{\sigma_s})\cdot G_{\sigma_r}\)&lt;/p&gt;
+
+        &lt;p&gt;特征函数与高斯函数做卷积运算（高斯平滑处理）将使得特征函数之间出现细微的重叠（扇区作为子区域subregion，相互之间有一定的重叠），而平滑结果与另一高斯函数的相乘运算将使结果$K_i$具有随着半径的增加而衰减的性质（靠近圆心的像素具有更大的权值）。由关系$\chi_i=\chi_0\circ R_{-2\pi i/N}$以及高斯滤波函数的中心对称性，$K_i$可以进一步表示为：&lt;/p&gt;
+
+        &lt;p&gt;​	\(K_i=((\chi_0\star G_{\sigma_s})\cdot G_{\sigma_r})\circ R_{-2\pi i/N}=K_0\circ R_{-2\pi i/N}\)&lt;/p&gt;
+
+        &lt;p&gt;将$K_i$映射回$\Omega$上，就可以得到椭圆$\Omega$上的滤波权值函数$\omega_i$：&lt;/p&gt;
+
+        &lt;p&gt;​	\(\begin{aligned}\omega_i=&amp;amp;(SR_{-\varphi})^{-1}K_i=K_i\circ SR_{-\varphi}\\=&amp;amp;K_0\circ R_{-2\pi i/N}\end{aligned}\)&lt;/p&gt;
+
+        &lt;p&gt;滤波权值函数定义完毕后，可以求出各扇形子区域的加权平均值$m_i$以及方差$s_i^{2}$如下：&lt;/p&gt;
+
+        &lt;p&gt;​	\(m_i=\frac{1}{k}\int f(x)\omega_i(x-x_0)\mathrm{d}x\)&lt;/p&gt;
+
+        &lt;p&gt;​	\(s_i^2=\frac{1}{k}\int f^2(x)\omega_i(x-x_0)\mathrm{d}x-m_i^2\)&lt;/p&gt;
+
+        &lt;p&gt;其中$k=\int \omega_i(x-x_0)\mathrm{d}x$，用于归一化。接下来设权值因子$\alpha_i$为：&lt;/p&gt;
+
+        &lt;p&gt;​	\(\alpha_i=\frac{1}{1+\Vert s_i\Vert^q}\)&lt;/p&gt;
+
+        &lt;p&gt;于是输出就可定义为：&lt;/p&gt;
+
+        &lt;p&gt;​	\(\frac{\sum_i \alpha_i m_i}{\sum_i\alpha_i}\)&lt;/p&gt;
+
+        &lt;p&gt;$\alpha_i$的定义保证了具有更小标准差的扇形子区域会具有更大的权值，同时当$s_i$值为0时其不会处于未定义的状态；其中的$\Vert s_i\Vert ^q$的意义是使子区域的权值受到其自身的标准差的值的影响，因而避免了前面提到过的不确定性；$q$的作用在论文&lt;em&gt;Artistic Edge and Corner Enhancing Smoothing&lt;/em&gt;中（存在区别，但基本作用一致）有更充分的介绍。&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Jingwen Huang</name></author><category term="PaperNotes" /><summary type="html">​ 本文提出了一种各向异的Kuwahara滤波器（anisotropic Kuwahara filter），其能够在保持边缘的同时沿局部特征方向来平滑图像，从而生成接近绘画效果的图像。</summary></entry></feed>
