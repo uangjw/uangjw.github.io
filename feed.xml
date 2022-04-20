@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="https://uangjw.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://uangjw.github.io/" rel="alternate" type="text/html" /><updated>2022-04-20T14:13:24+00:00</updated><id>https://uangjw.github.io/feed.xml</id><title type="html">Bird Nest</title><subtitle>-</subtitle><author><name>Jingwen Huang</name></author><entry><title type="html">论文笔记||Music Transformer</title><link href="https://uangjw.github.io/2022/02/27/paper-music-transformer/" rel="alternate" type="text/html" title="论文笔记||Music Transformer" /><published>2022-02-27T00:00:00+00:00</published><updated>2022-02-27T00:00:00+00:00</updated><id>https://uangjw.github.io/2022/02/27/paper-music-transformer</id><content type="html" xml:base="https://uangjw.github.io/2022/02/27/paper-music-transformer/">&lt;h3 id=&quot;music-transformer&quot;&gt;Music Transformer&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="https://uangjw.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://uangjw.github.io/" rel="alternate" type="text/html" /><updated>2022-04-20T14:15:36+00:00</updated><id>https://uangjw.github.io/feed.xml</id><title type="html">Bird Nest</title><subtitle>-</subtitle><author><name>Jingwen Huang</name></author><entry><title type="html">论文笔记||Music Transformer</title><link href="https://uangjw.github.io/2022/02/27/paper-music-transformer/" rel="alternate" type="text/html" title="论文笔记||Music Transformer" /><published>2022-02-27T00:00:00+00:00</published><updated>2022-02-27T00:00:00+00:00</updated><id>https://uangjw.github.io/2022/02/27/paper-music-transformer</id><content type="html" xml:base="https://uangjw.github.io/2022/02/27/paper-music-transformer/">&lt;h3 id=&quot;music-transformer&quot;&gt;Music Transformer&lt;/h3&gt;
 
 &lt;p&gt;Music Transformer是一个基于Transformer的音乐生成模型。面对自动音乐生成的问题，Music Transformer在原模型的基础上改进了其所使用的注意力机制；Transformer完全使用注意力层以及全连接层的模型结构可能忽略信号的相对关系特征，Music Transformer在Transformer的基础上使用relative attention，这种注意力机制显式地根据两个标记之间的距离估计注意力分数，从而能够关注在音乐序列中具有更明显作用的相对关系特征。&lt;/p&gt;
 
@@ -26,7 +26,7 @@ PE_{(pos, 2i+1)}=cos(pos/10000^{2i/d_{model}})\)
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;images/transformer4.png&quot; div=&quot;&quot; align=&quot;center&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/transformer4.png&quot; div=&quot;&quot; align=&quot;center&quot; /&gt;&lt;/p&gt;
 
 &lt;h4 id=&quot;relative-positional-self-attention-1&quot;&gt;relative positional self-attention&lt;/h4&gt;
 
@@ -42,7 +42,7 @@ Music Transformer使用了相同的方法来在注意力打分过程中引入相
 
 &lt;p&gt;Music Transformer中的RPR self-attention做出了这样的改进：&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;images/musictransformer.png&quot; div=&quot;&quot; align=&quot;center&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/musictransformer.png&quot; div=&quot;&quot; align=&quot;center&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;也即，把从$E^r$得到$S^{rel}$的计算过程中对$R$的需求转化成了四个操作，这四个操作的具体效果图片已经展示得很清晰了。&lt;/p&gt;</content><author><name>Jingwen Huang</name></author><category term="PaperNotes" /><category term="Deep Learning" /><summary type="html">Music Transformer</summary></entry><entry><title type="html">论文笔记||Attention Is All You Need</title><link href="https://uangjw.github.io/2022/02/07/paper-transformer/" rel="alternate" type="text/html" title="论文笔记||Attention Is All You Need" /><published>2022-02-07T00:00:00+00:00</published><updated>2022-02-07T00:00:00+00:00</updated><id>https://uangjw.github.io/2022/02/07/paper-transformer</id><content type="html" xml:base="https://uangjw.github.io/2022/02/07/paper-transformer/">&lt;h3 id=&quot;transformer&quot;&gt;Transformer&lt;/h3&gt;
 
