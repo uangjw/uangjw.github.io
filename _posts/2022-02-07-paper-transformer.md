@@ -31,7 +31,7 @@ Transformer模型首次于文章Attention Is All You Need提出，如题目所�
 
 注意力函数（attention function）可以看作是一个从一个查询与一组键值对到一个输出的映射，其中查询、键、值以及输出都是向量，它们的创建都是通过一个权值矩阵与待处理的向量相乘实现的。在NLP情形下，可以认为自注意力机制就是在模型处理输入序列的每个单词时能够关注到整个序列中的所有单词，从而更好地编/解码；具体来说，当我们希望查询某单词在句子的其他位置上的“注意力”，我们就将其他位置上的单词拿来对该单词做“注意力计算（打分）”，计算结果决定了编码该单词的过程中有多重视句子的其它部分。
 
-作者使用的Scaled Dot-Product Attention机制的结构如下图。计算相应的attention值（输出）的流程可以表达为如下公式：
+作者使用的Scaled Dot-Product Attention机制的结构如下图。计算相应的attention值的流程可以表达为如下公式：
 $$
 Attention(Q,K,V)=softmax(\frac{QK^T}{\sqrt{d_k}})V
 $$
