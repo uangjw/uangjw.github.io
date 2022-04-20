@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 论文笔记||Attention Is All You Need
-categories: [PaperNotes]
+categories: [PaperNotes, Deep Learning]
 description: Transformer的基本架构与自注意力机制
 keywords: Transformer
 
