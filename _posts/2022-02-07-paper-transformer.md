@@ -19,7 +19,7 @@ Transformer模型首次于文章Attention Is All You Need提出，如题目所�
 
 #### 模型架构
 
-<img src="/images/transformer1.png" div align=center/>
+<img src="/images/transformer1.png" style="zoom: 80%;"/>
 
 编码器：6个相同的网络层组成，其中每层都有两个子网络层（或者理解成6个编码器级联）。子层中按传输顺序第一个是一个Multi-Head self-attention机制，即一个自注意力层。第二个子层是一个简单的全连接前馈网络层。
 
@@ -37,13 +37,15 @@ Attention(Q,K,V)=softmax(\frac{QK^T}{\sqrt{d_k}})V
 $$
 其中$Q$即请求向量，$K$即所有键值组成的向量，$V$即所有键对应值的向量，$d_k$即键值对的维数。这种计算attention的方式是在一般的dot-product attention的基础上多除了一个维数的平方根，这一步可以让梯度更稳定。将注意力分数计算完毕后通过softmax函数来传递结果，这一步使得所有单词的分数都归一化，得到的分数都是正值且和为1。
 
-<img src="/images/transformer3.png" div align=center/>
+<img src="/images/transformer3.png" style="zoom: 80%;"/>
 
 前面描述模型结构的时候提到实际上用到的是Multi-Head Attention机制（多头注意力机制）。多头注意力机制扩展了模型专注于输入序列不同位置的能力，给出了注意力层的多个“表示子空间”（论文的表述：“能够联合地从不同的表示子空间中关注不同位置的信息”）。结合下图理解多头注意力机制，向量VKQ并行地进行h次线性投影（linear projection，通过矩阵乘法进行），投影结果将被并行地进行scaled dot-product注意力分数计算，然后拼接到一起再被线性投影，得到一个矩阵。公式表达为：
 $$
 MultiHead(Q,K,V)=Concat(head_1,...,head_h)W^O \\
 where \ head_i=Attention(QW_i^Q,KW_I^K,VW_i^V)
 $$
-<img src="/images/transformer2.png" div align=center/>
+<br>
+
+<img src="/images/transformer2.png" style="zoom: 80%;"/>
 
 <img src="/images/transformer4.png" div align=center/>

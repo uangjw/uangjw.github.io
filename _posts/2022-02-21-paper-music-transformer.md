@@ -35,6 +35,8 @@ $$
 Z^h=Attention(Q^h,K^h,V^h)=Softmax(\frac{Q^hK^{h\top}}{\sqrt{D_h}})V^h
 $$
 
+<br>
+
 <img src="images/transformer4.png" div align=center/>
 
 #### relative positional self-attention
