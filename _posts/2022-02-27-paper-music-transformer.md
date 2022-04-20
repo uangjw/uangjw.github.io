@@ -37,7 +37,7 @@ $$
 
 <br>
 
-<img src="../../../../Desktop/images/transformer4.png" div align=center/>
+<img src="images/transformer4.png" div align=center/>
 
 #### relative positional self-attention
 
@@ -57,6 +57,6 @@ RPR self-attention的原文章中，从$E^r$每一个注意力头的分量到对
 
 Music Transformer中的RPR self-attention做出了这样的改进：
 
-<img src="../../../../Desktop/images/musictransformer.png" div align=center/>
+<img src="images/musictransformer.png" div align=center/>
 
 也即，把从$E^r$得到$S^{rel}$的计算过程中对$R$的需求转化成了四个操作，这四个操作的具体效果图片已经展示得很清晰了。
