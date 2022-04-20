@@ -1,0 +1,204 @@
+
+
+[
+  
+  
+  
+  
+    {
+      "title"    : "About",
+      "url"      : "https://uangjw.github.io/about/",
+      "keywords" : "Zhuang Ma, 马壮"
+    } ,
+  
+  
+  
+    {
+      "title"    : "归档",
+      "url"      : "https://uangjw.github.io/archives/",
+      "keywords" : "归档"
+    } ,
+  
+  
+  
+    {
+      "title"    : "Categories",
+      "url"      : "https://uangjw.github.io/categories/",
+      "keywords" : "分类"
+    } ,
+  
+  
+  
+  
+  
+  
+  
+    {
+      "title"    : "mindmap",
+      "url"      : "https://uangjw.github.io/mindmap-viewer/",
+      "keywords" : "mindmap"
+    } ,
+  
+  
+  
+    {
+      "title"    : "Open Source Projects",
+      "url"      : "https://uangjw.github.io/open-source/",
+      "keywords" : "开源,open-source,GitHub,开源项目"
+    } ,
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    {
+      "title"    : "读书笔记||The Algorithms and Principles of Non-photorealistic Graphics 1",
+      "category" : "BookReport",
+      
+      "url"      : "https://uangjw.github.io/2020/11/19/book1-chap1/",
+      "keywords" : "book1, NPG"
+    } ,
+  
+    {
+      "title"    : "论文笔记||Imaging Vector Fields Using Line Integral Convolution(LIC)",
+      "category" : "PaperNotes",
+      
+      "url"      : "https://uangjw.github.io/2020/11/26/paper-LIC/",
+      "keywords" : "paper, LIC"
+    } ,
+  
+    {
+      "title"    : "图像处理基础 1",
+      "category" : "Basics",
+      
+      "url"      : "https://uangjw.github.io/2020/12/03/basic-image-processing/",
+      "keywords" : "image processing"
+    } ,
+  
+    {
+      "title"    : "了解Kuwahara Filter",
+      "category" : "Basics",
+      
+      "url"      : "https://uangjw.github.io/2020/12/17/basic-KuwaharaFilter/",
+      "keywords" : "KuwaharaFilter, Basics"
+    } ,
+  
+    {
+      "title"    : "论文笔记||Image and Video Abstraction by Anisotropic Kuwahara Filtering",
+      "category" : "PaperNotes",
+      
+      "url"      : "https://uangjw.github.io/2020/12/17/paper-KuwaharaFilter1/",
+      "keywords" : "paper, KuwaharaFilter"
+    } ,
+  
+    {
+      "title"    : "论文笔记||Artistic Edge and Corner Enhancing Smoothing",
+      "category" : "PaperNotes",
+      
+      "url"      : "https://uangjw.github.io/2020/12/17/paper-KuwaharaFilter2/",
+      "keywords" : "PaperNotes, KuwaharaFilter"
+    } ,
+  
+    {
+      "title"    : "复现||c++/opencv实现简单LIC",
+      "category" : "reproduction",
+      
+      "url"      : "https://uangjw.github.io/2020/12/17/reproduction-LIC/",
+      "keywords" : "复现, LIC, opencv"
+    } ,
+  
+    {
+      "title"    : "论文笔记/复现||python-opencv实现数字绘画重打光（relighting）",
+      "category" : "reproduction",
+      
+      "url"      : "https://uangjw.github.io/2021/03/01/reproduction-PaintingLight/",
+      "keywords" : "python, opencv"
+    } ,
+  
+    {
+      "title"    : "论文笔记||Customizing Painterly Rendering Styles Using Stroke Processes",
+      "category" : "PaperNotes",
+      
+      "url"      : "https://uangjw.github.io/2021/04/05/paper-NPR-stroke-processes/",
+      "keywords" : "stochastic reaction-diffusion process"
+    } ,
+  
+    {
+      "title"    : "论文笔记||三个基于深度学习的音乐转录模型",
+      "category" : "Deep Learning",
+      
+      "url"      : "https://uangjw.github.io/2021/10/21/AMT-DL-3models/",
+      "keywords" : "Deep Learning, AMT"
+    } ,
+  
+    {
+      "title"    : "读书笔记||神经网络与深度学习5、6章",
+      "category" : "Deep Learning",
+      
+      "url"      : "https://uangjw.github.io/2021/10/21/book2-chap56/",
+      "keywords" : "Deep Learning"
+    } ,
+  
+    {
+      "title"    : "读书笔记||神经网络与深度学习第3章",
+      "category" : "Deep Learning",
+      
+      "url"      : "https://uangjw.github.io/2021/10/22/book2-chap3/",
+      "keywords" : "Deep Learning"
+    } ,
+  
+    {
+      "title"    : "不基于模型的预测与控制",
+      "category" : "Reinforcement Learning",
+      
+      "url"      : "https://uangjw.github.io/2021/10/24/RL-model-free-control/",
+      "keywords" : "Reinforce Learning, MDP"
+    } ,
+  
+    {
+      "title"    : "论文笔记||Sketch Generation with Drawing Process Guided by Vector Flow and Grayscale",
+      "category" : "PaperNotes",
+      
+      "url"      : "https://uangjw.github.io/2021/11/12/paper-sktech-generation/",
+      "keywords" : "NPR"
+    } ,
+  
+    {
+      "title"    : "论文笔记||Attention Is All You Need",
+      "category" : "PaperNotes",
+      
+      "url"      : "https://uangjw.github.io/2022/02/07/paper-transformer/",
+      "keywords" : "Transformer"
+    } ,
+  
+    {
+      "title"    : "",
+      "category" : "",
+      
+      "url"      : "https://uangjw.github.io/2022/04/20/2022-02-21-paper-music-transformer/",
+      "keywords" : ""
+    } ,
+  
+    {
+      "title"    : "Wiki Template",
+      "category" : "cate1",
+      
+      "url"      : "https://uangjw.github.io/wiki/template/",
+      "keywords" : "keyword1, keyword2"
+    } 
+  
+]
+
