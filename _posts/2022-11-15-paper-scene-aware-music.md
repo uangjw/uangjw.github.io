@@ -12,7 +12,7 @@ keywords: Deep Learning
 
 描述了一种根据视觉内容合成背景音乐的方法。过程分两步：场景视觉分析与音乐合成。场景视觉分析通过深度学习实现，即利用神经网络分析输入场景图像的情感。实时的音乐合成通过优化方法实现，损失函数用于引导音乐片段的选择与转变顺序，使得合成音乐尽可能具有与视觉内容一致的情感，并尽量在场景切换时保持连续性。
 
-<img src="/images/post-pasm/fig1.png" />
+<img src="/images/post-psam/fig1.png" style="zoom: 80%;"/>
 
 #### Scene Visual Analysis
 
@@ -30,7 +30,7 @@ keywords: Deep Learning
 
 本方法强调为视频自动生成背景音乐，相比之前的工作能够更好地为视频生成特定的音乐，并考虑到了音乐的节奏和视频的节奏应具有的一致性。作者首先建立起视频和背景音乐之间的节奏联系，具体来说就是将视频的时间点、动作速度、动作显著度以及音乐的节奏、音符密度和音符强度一一对应。接着作者提出了一个可控制的Music Transformer模型（CMT），其能够接受前面提到的节奏信息输入来对生成音乐的节奏进行局部的控制，也能够接受用户提供的音乐流派以及演奏乐器的输入来对生成音乐进行全局控制。
 
-<img src="/images/post-pasm/fig2.png" />
+<img src="/images/post-psam/fig2.png" style="zoom: 80%;"/>
 
 #### Establishing Video-Music Rhythmic Relations
 
@@ -46,4 +46,4 @@ keywords: Deep Learning
 
 CMT框架如下图所示：
 
-<img src="/images/post-pasm/fig3.png" />
+<img src="/images/post-psam/fig3.png" style="zoom: 80%;"/>
