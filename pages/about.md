@@ -8,8 +8,6 @@ menu: 关于
 permalink: /about/
 ---
 
-累bro
 
 
-
-Email: huangjw223@mail2.sysu.edu.cn
+Email: huangjw223@163.com
